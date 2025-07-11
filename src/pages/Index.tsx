@@ -4,6 +4,10 @@ import Navigation from '../components/Navigation';
 import ImageUpload from '../components/ImageUpload';
 import StyleSelector from '../components/StyleSelector';
 import TransformationResults from '../components/TransformationResults';
+import FeaturesSection from '../components/FeaturesSection';
+import ExamplesSection from '../components/ExamplesSection';
+import PricingSection from '../components/PricingSection';
+import Footer from '../components/Footer';
 import { Button } from '@/components/ui/button';
 import { Sparkles, Wand2, Image as ImageIcon } from 'lucide-react';
 
@@ -41,54 +45,56 @@ const Index = () => {
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-8 animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent mb-6">
-              Transform Your Images
+              Transform Images with AI Magic
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Create magical Ghibli-style artwork or stunning action figure renders with the power of AI
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
+              Turn your ordinary photos into enchanting Ghibli-style artwork or action figures with our AI-powered image transformation platform.
             </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg"
+                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                Try It Now →
+              </Button>
+              <Button 
+                variant="outline"
+                size="lg"
+                className="border-purple-200 text-purple-600 hover:bg-purple-50 px-8 py-3 text-lg font-semibold rounded-full"
+              >
+                View Examples
+              </Button>
+            </div>
           </div>
           
-          {/* Example Transformations */}
-          <div className="grid md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
-            <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          {/* Hero Image */}
+          <div className="relative max-w-4xl mx-auto">
+            <div className="bg-white/70 backdrop-blur-sm rounded-3xl shadow-xl border border-white/20 p-8 relative overflow-hidden">
               <img 
-                src="/placeholder.svg" 
-                alt="Ghibli transformation example"
-                className="w-full h-64 object-cover"
+                src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=500&fit=crop" 
+                alt="AI transformation example"
+                className="w-full h-64 md:h-80 object-cover rounded-2xl"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="text-lg font-semibold flex items-center gap-2">
-                    <Sparkles className="w-5 h-5" />
-                    Ghibli Magic
-                  </h3>
-                  <p className="text-sm opacity-90">Watercolor dreamscapes</p>
-                </div>
+              <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1">
+                <span className="text-sm font-medium text-purple-600">Original</span>
               </div>
-            </div>
-            
-            <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-              <img 
-                src="/placeholder.svg" 
-                alt="Action figure transformation example"
-                className="w-full h-64 object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="text-lg font-semibold flex items-center gap-2">
-                    <Wand2 className="w-5 h-5" />
-                    Action Figure
-                  </h3>
-                  <p className="text-sm opacity-90">Collectible perfection</p>
-                </div>
+              <div className="absolute bottom-4 right-4 bg-purple-600 text-white rounded-lg px-3 py-1">
+                <span className="text-sm font-medium">Transformed</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Features Section */}
+      <FeaturesSection />
+
+      {/* Examples Section */}
+      <ExamplesSection />
+
       {/* Transformation Interface */}
-      <section className="pb-20 px-4">
+      <section className="py-20 px-4" id="try-it">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white/70 backdrop-blur-sm rounded-3xl shadow-xl border border-white/20 p-8 md:p-12">
             <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
@@ -181,6 +187,12 @@ const Index = () => {
           selectedStyle={selectedStyle}
         />
       )}
+
+      {/* Pricing Section */}
+      <PricingSection />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
