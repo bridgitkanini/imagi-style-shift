@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { Sparkles, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/clerk-react';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,15 +32,33 @@ const Navigation = () => {
             <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors font-medium">
               About
             </a>
-            <Button 
-              variant="outline" 
-              className="border-purple-200 text-purple-600 hover:bg-purple-50"
-            >
-              Sign In
-            </Button>
-            <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white">
-              Get Started
-            </Button>
+            
+            {/* Clerk Authentication Components */}
+            <SignedOut>
+              <SignInButton fallbackRedirectUrl="/">
+                <Button 
+                  variant="outline" 
+                  className="border-purple-200 text-purple-600 hover:bg-purple-50"
+                >
+                  Sign In
+                </Button>
+              </SignInButton>
+              <SignUpButton fallbackRedirectUrl="/">
+                <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white">
+                  Get Started
+                </Button>
+              </SignUpButton>
+            </SignedOut>
+            
+            <SignedIn>
+              <UserButton 
+                appearance={{
+                  elements: {
+                    avatarBox: "w-8 h-8"
+                  }
+                }}
+              />
+            </SignedIn>
           </div>
 
           {/* Mobile menu button */}
@@ -66,16 +85,36 @@ const Navigation = () => {
             <a href="#" className="block text-gray-600 hover:text-purple-600 transition-colors font-medium py-2">
               About
             </a>
+            
+            {/* Mobile Clerk Authentication */}
             <div className="pt-4 space-y-2">
-              <Button 
-                variant="outline" 
-                className="w-full border-purple-200 text-purple-600 hover:bg-purple-50"
-              >
-                Sign In
-              </Button>
-              <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white">
-                Get Started
-              </Button>
+              <SignedOut>
+                <SignInButton fallbackRedirectUrl="/">
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-purple-200 text-purple-600 hover:bg-purple-50"
+                  >
+                    Sign In
+                  </Button>
+                </SignInButton>
+                <SignUpButton fallbackRedirectUrl="/">
+                  <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white">
+                    Get Started
+                  </Button>
+                </SignUpButton>
+              </SignedOut>
+              
+              <SignedIn>
+                <div className="flex justify-center pt-2">
+                  <UserButton 
+                    appearance={{
+                      elements: {
+                        avatarBox: "w-8 h-8"
+                      }
+                    }}
+                  />
+                </div>
+              </SignedIn>
             </div>
           </div>
         )}
