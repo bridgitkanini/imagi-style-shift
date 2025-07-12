@@ -19,6 +19,13 @@ interface ImageEditOptions {
 }
 
 export const generateImage = async (options: ImageGenerationOptions): Promise<string> => {
+  // Get the current session for authentication
+  const { data: { session } } = await supabase.auth.getSession();
+  
+  if (!session?.access_token) {
+    throw new Error('User must be authenticated to generate images');
+  }
+
   const { data, error } = await supabase.functions.invoke('generate-image', {
     body: {
       prompt: options.prompt,
@@ -27,6 +34,9 @@ export const generateImage = async (options: ImageGenerationOptions): Promise<st
       quality: options.quality || 'standard',
       style: options.style || 'vivid',
       n: options.n || 1,
+    },
+    headers: {
+      Authorization: `Bearer ${session.access_token}`,
     },
   });
 
@@ -43,6 +53,13 @@ export const generateImage = async (options: ImageGenerationOptions): Promise<st
 };
 
 export const editImage = async (options: ImageEditOptions): Promise<string> => {
+  // Get the current session for authentication
+  const { data: { session } } = await supabase.auth.getSession();
+  
+  if (!session?.access_token) {
+    throw new Error('User must be authenticated to edit images');
+  }
+
   const formData = new FormData();
   formData.append('image', options.image);
   formData.append('prompt', options.prompt);
@@ -50,6 +67,9 @@ export const editImage = async (options: ImageEditOptions): Promise<string> => {
 
   const { data, error } = await supabase.functions.invoke('edit-image', {
     body: formData,
+    headers: {
+      Authorization: `Bearer ${session.access_token}`,
+    },
   });
 
   if (error) {

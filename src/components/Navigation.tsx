@@ -1,28 +1,55 @@
 
 import { Button } from '@/components/ui/button';
-import { Sparkles, Menu, X } from 'lucide-react';
+import { Sparkles, Menu, X, History } from 'lucide-react';
 import { useState } from 'react';
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/clerk-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-white/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
               MagicTransform
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
+            <Link 
+              to="/" 
+              className={`font-medium transition-colors ${
+                isActive('/') 
+                  ? 'text-purple-600' 
+                  : 'text-gray-600 hover:text-purple-600'
+              }`}
+            >
+              Generate
+            </Link>
+            <SignedIn>
+              <Link 
+                to="/history" 
+                className={`font-medium transition-colors flex items-center gap-1 ${
+                  isActive('/history') 
+                    ? 'text-purple-600' 
+                    : 'text-gray-600 hover:text-purple-600'
+                }`}
+              >
+                <History className="w-4 h-4" />
+                History
+              </Link>
+            </SignedIn>
             <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors font-medium">
               Gallery
             </a>
@@ -76,6 +103,31 @@ const Navigation = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden absolute top-16 left-0 right-0 bg-white/95 backdrop-blur-md border-b border-white/20 p-4 space-y-4">
+            <Link 
+              to="/" 
+              className={`block font-medium py-2 transition-colors ${
+                isActive('/') 
+                  ? 'text-purple-600' 
+                  : 'text-gray-600 hover:text-purple-600'
+              }`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Generate
+            </Link>
+            <SignedIn>
+              <Link 
+                to="/history" 
+                className={`block font-medium py-2 transition-colors flex items-center gap-1 ${
+                  isActive('/history') 
+                    ? 'text-purple-600' 
+                    : 'text-gray-600 hover:text-purple-600'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <History className="w-4 h-4" />
+                History
+              </Link>
+            </SignedIn>
             <a href="#" className="block text-gray-600 hover:text-purple-600 transition-colors font-medium py-2">
               Gallery
             </a>
