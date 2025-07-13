@@ -41,6 +41,23 @@ serve(async (req) => {
       throw new Error('User not authenticated');
     }
 
+    // Create service role client for checking limits
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    // Check usage limits
+    const { data: limitData, error: limitError } = await supabase
+      .rpc('get_user_limits', { user_email: user.email });
+    
+    if (limitError) {
+      console.error('Error checking limits:', limitError);
+      throw new Error('Failed to check usage limits');
+    }
+
+    const limits = limitData?.[0];
+    if (limits && limits.current_usage >= limits.generation_limit) {
+      throw new Error(`Usage limit exceeded. You have used ${limits.current_usage}/${limits.generation_limit} edits this month. Upgrade your plan for more edits.`);
+    }
+
     const formData = await req.formData();
     const image = formData.get('image') as File;
     const prompt = formData.get('prompt') as string;
@@ -82,8 +99,7 @@ serve(async (req) => {
     const imageBlob = await imageResponse.blob();
     const imageBuffer = await imageBlob.arrayBuffer();
     
-    // Create Supabase client with service role for storage operations
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    // Use existing service role client
     
     // Generate unique filename
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
@@ -123,6 +139,25 @@ serve(async (req) => {
     if (dbError) {
       console.error('Database insert error:', dbError);
       // Don't throw here, as the image was edited successfully
+    }
+
+    // Update usage tracking
+    const currentMonth = new Date().toISOString().substring(0, 7); // YYYY-MM format
+    const currentUsage = limits?.current_usage || 0;
+    
+    const { error: usageError } = await supabase.from('usage_tracking').upsert({
+      user_id: user.id,
+      month_year: currentMonth,
+      generations_used: 0,
+      edits_used: currentUsage + 1
+    }, {
+      onConflict: 'user_id,month_year',
+      ignoreDuplicates: false
+    });
+
+    if (usageError) {
+      console.error('Usage tracking error:', usageError);
+      // Don't throw error for usage tracking failure
     }
 
     console.log('Image edited and saved successfully');
