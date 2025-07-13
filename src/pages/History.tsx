@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
-import { History, Download, Trash2, Calendar, Tag, Palette } from 'lucide-react';
+import { Download, Trash2, Calendar, Tag, Palette, History as HistoryIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -103,7 +103,7 @@ const History = () => {
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center">
-              <History className="w-5 h-5 text-white" />
+              <HistoryIcon className="w-5 h-5 text-white" />
             </div>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
               Your AI Image History
@@ -195,7 +195,7 @@ const History = () => {
         ) : (
           <div className="text-center py-12">
             <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
-              <History className="w-8 h-8 text-gray-400" />
+              <HistoryIcon className="w-8 h-8 text-gray-400" />
             </div>
             <h2 className="text-xl font-semibold text-gray-900 mb-2">No Images Yet</h2>
             <p className="text-gray-600 mb-6">

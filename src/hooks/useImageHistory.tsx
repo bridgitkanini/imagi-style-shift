@@ -6,6 +6,7 @@ interface ImageHistoryItem {
   id: string;
   prompt: string;
   image_url: string;
+  storage_path: string;
   generation_type: 'text-to-image' | 'edit-image';
   model_used: string | null;
   size: string | null;
@@ -25,7 +26,7 @@ export const useImageHistory = () => {
         throw new Error(error.message);
       }
 
-      return data || [];
+      return (data || []) as ImageHistoryItem[];
     },
   });
 };
@@ -44,7 +45,7 @@ export const useRecentImages = (limit: number = 6) => {
         throw new Error(error.message);
       }
 
-      return data || [];
+      return (data || []) as ImageHistoryItem[];
     },
   });
 };
