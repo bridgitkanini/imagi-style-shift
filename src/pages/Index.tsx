@@ -67,9 +67,7 @@ const Index = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section
-        className="relative w-full py-48 px-4 bg-gradient-to-r from-[#b993f4] to-[#8ca6db]"
-      >
+      <section className="relative w-full py-48 px-4 bg-gradient-to-r from-[#b993f4] to-[#8ca6db]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
           {/* Left: Text & Buttons */}
           <div className="flex-1 flex flex-col items-start justify-center text-left">
@@ -111,14 +109,14 @@ const Index = () => {
           <div className="flex-1 flex items-center justify-center w-full md:w-auto">
             <div className="relative w-[380px] h-[240px] md:w-[420px] md:h-[260px] rounded-3xl shadow-2xl border-4 border-white overflow-hidden bg-white">
               <img
-                src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=500&fit=crop" 
+                src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=500&fit=crop"
                 alt="Main example"
                 className="w-full h-full object-cover"
               />
               {/* Overlay smaller image */}
               <div className="absolute bottom-4 right-4 w-40 h-24 rounded-xl shadow-lg border-2 border-white overflow-hidden bg-white flex items-center justify-center">
                 <img
-                  src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=500&fit=crop" 
+                  src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=500&fit=crop"
                   alt="Overlay example"
                   className="w-full h-full object-cover"
                 />
@@ -129,10 +127,14 @@ const Index = () => {
       </section>
 
       {/* Features Section */}
-      <FeaturesSection />
+      <section id="features">
+        <FeaturesSection />
+      </section>
 
       {/* Examples Section */}
-      <ExamplesSection />
+      <section id="examples">
+        <ExamplesSection />
+      </section>
 
       {/* AI Tools Interface */}
       <section className="py-20 px-4" id="try-it">
@@ -282,10 +284,14 @@ const Index = () => {
       )}
 
       {/* Pricing Section */}
-      <PricingSection />
+      <section id="pricing">
+        <PricingSection />
+      </section>
 
       {/* Footer */}
-      <Footer />
+      <div id="footer">
+        <Footer />
+      </div>
     </div>
   );
 };
