@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Sparkles, Menu, X, History, Settings } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   SignedIn,
   SignedOut,
@@ -13,8 +13,37 @@ import { Link, useLocation } from "react-router-dom";
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const [activeSection, setActiveSection] = useState<string>("generate");
 
   const isActive = (path: string) => location.pathname === path;
+
+  useEffect(() => {
+    const sectionIds = [
+      "generate",
+      "features",
+      "examples",
+      "pricing",
+      "footer",
+    ];
+    const handleScroll = () => {
+      let found = false;
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 80 && rect.bottom > 80) {
+            setActiveSection(id);
+            found = true;
+            break;
+          }
+        }
+      }
+      if (!found) setActiveSection("");
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-white/20">
@@ -32,6 +61,7 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
+            {/* Home Button */}
             <Link
               to="/"
               className={`font-medium transition-colors ${
@@ -39,8 +69,14 @@ const Navigation = () => {
                   ? "text-purple-600"
                   : "text-gray-600 hover:text-purple-600"
               }`}
+              onClick={(e) => {
+                if (isActive("/")) {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+              }}
             >
-              Generate
+              Home
             </Link>
 
             <button
@@ -60,6 +96,19 @@ const Navigation = () => {
               }}
             >
               Gallery
+            </button>
+            <button
+              className={`font-medium transition-colors ${
+                activeSection === "generate"
+                  ? "text-purple-600"
+                  : "text-gray-600 hover:text-purple-600"
+              }`}
+              onClick={() => {
+                const el = document.getElementById("generate");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              Generate
             </button>
             <button
               className="text-gray-600 hover:text-purple-600 transition-colors font-medium"
@@ -150,10 +199,17 @@ const Navigation = () => {
                   ? "text-purple-600"
                   : "text-gray-600 hover:text-purple-600"
               }`}
-              onClick={() => setIsMenuOpen(false)}
+              onClick={(e) => {
+                setIsMenuOpen(false);
+                if (isActive("/")) {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+              }}
             >
-              Generate
+              Home
             </Link>
+
             <SignedIn>
               <Link
                 to="/history"
@@ -199,6 +255,20 @@ const Navigation = () => {
               }}
             >
               Gallery
+            </button>
+            <button
+              className={`block font-medium py-2 transition-colors ${
+                activeSection === "generate"
+                  ? "text-purple-600"
+                  : "text-gray-600 hover:text-purple-600"
+              }`}
+              onClick={() => {
+                setIsMenuOpen(false);
+                const el = document.getElementById("generate");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              Generate
             </button>
             <button
               className="text-gray-600 hover:text-purple-600 transition-colors font-medium py-2"

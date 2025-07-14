@@ -1,8 +1,8 @@
 # Welcome to your Lovable project
 
-## About Imagi Style Shift
+## About Magic Transform
 
-**Imagi Style Shift** is a comprehensive AI-powered image generation and transformation platform that allows users to create, edit, and transform images using cutting-edge artificial intelligence technology.
+**Magic Transform** is a comprehensive AI-powered image generation and transformation platform that allows users to create, edit, and transform images using cutting-edge artificial intelligence technology.
 
 ### 🎨 Core Features
 

@@ -86,15 +86,18 @@ const Index = () => {
             <div className="flex gap-4">
               <Button
                 size="lg"
-                className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 text-lg font-semibold rounded-lg shadow-md transition-all duration-300"
-                onClick={() => setActiveTab("generate")}
+                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 text-lg font-semibold rounded-lg shadow-md transition-all duration-300"
+                onClick={() => {
+                  const el = document.getElementById("generate");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
               >
                 Try It Now
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="bg-white text-purple-700 border border-purple-200 hover:bg-purple-50 px-8 py-3 text-lg font-semibold rounded-lg"
+                className=" text-purple-700 bg-gradient-to-r hover:from-purple-700 hover:to-blue-700 hover:text-white px-8 py-3 text-lg font-semibold rounded-lg"
                 onClick={() => {
                   const el = document.getElementById("examples");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -137,7 +140,7 @@ const Index = () => {
       </section>
 
       {/* AI Tools Interface */}
-      <section className="py-20 px-4" id="try-it">
+      <section id="generate" className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="bg-white/70 backdrop-blur-sm rounded-3xl shadow-xl border border-white/20 p-8 md:p-12">
             <div className="flex items-center justify-between mb-8">

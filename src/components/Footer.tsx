@@ -35,7 +35,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-50 border-t border-gray-200">
       {/* CTA Section */}
-      <section className="py-16 px-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white">
+      <section className="py-16 px-4 bg-gradient-to-r from-[#b993f4] to-[#8ca6db] text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Transform Your Images?
@@ -47,7 +47,10 @@ const Footer = () => {
           <Button
             size="lg"
             className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-3 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() => {
+              const el = document.getElementById("generate");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
           >
             Get Started Now →
           </Button>
