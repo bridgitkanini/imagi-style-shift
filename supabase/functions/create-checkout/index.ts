@@ -48,10 +48,10 @@ serve(async (req) => {
       logStep("Found existing customer", { customerId });
     }
 
-    // Define pricing based on plan
+    // Define pricing based on plan with actual Stripe price IDs
     const planConfig = {
-      pro: { amount: 1000, name: "Pro Plan" }, // $10
-      pro_plus: { amount: 5000, name: "Pro Plus Plan" } // $50
+      pro: { priceId: "price_1RkW0wRUWM5BH355hQ5oBSE9", name: "Pro Plan" },
+      pro_plus: { priceId: "price_1RkW1hRUWM5BH355fiBKM8G5", name: "Pro Plus Plan" }
     };
 
     if (!planConfig[plan as keyof typeof planConfig]) {
@@ -66,12 +66,7 @@ serve(async (req) => {
       customer_email: customerId ? undefined : user.email,
       line_items: [
         {
-          price_data: {
-            currency: "usd",
-            product_data: { name: selectedPlan.name },
-            unit_amount: selectedPlan.amount,
-            recurring: { interval: "month" },
-          },
+          price: selectedPlan.priceId,
           quantity: 1,
         },
       ],

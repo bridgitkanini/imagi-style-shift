@@ -82,14 +82,12 @@ serve(async (req) => {
       const subscription = subscriptions.data[0];
       subscriptionEnd = new Date(subscription.current_period_end * 1000).toISOString();
       
-      // Determine tier from price
+      // Determine tier from price ID
       const priceId = subscription.items.data[0].price.id;
-      const price = await stripe.prices.retrieve(priceId);
-      const amount = price.unit_amount || 0;
       
-      if (amount === 1000) {
+      if (priceId === 'price_1RkW0wRUWM5BH355hQ5oBSE9') {
         subscriptionTier = 'pro';
-      } else if (amount === 5000) {
+      } else if (priceId === 'price_1RkW1hRUWM5BH355fiBKM8G5') {
         subscriptionTier = 'pro_plus';
       }
       
