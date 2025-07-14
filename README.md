@@ -1,9 +1,5 @@
 # Welcome to your Lovable project
 
-## Project info
-
-**URL**: https://lovable.dev/projects/a734e7de-8f06-4342-9f56-da94b031369a
-
 ## About Imagi Style Shift
 
 **Imagi Style Shift** is a comprehensive AI-powered image generation and transformation platform that allows users to create, edit, and transform images using cutting-edge artificial intelligence technology.
@@ -179,3 +175,7 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+## Project info
+
+**URL**: https://lovable.dev/projects/a734e7de-8f06-4342-9f56-da94b031369a
