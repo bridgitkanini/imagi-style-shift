@@ -37,6 +37,17 @@ const Navigation = () => {
             >
               Generate
             </Link>
+            
+            <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors font-medium">
+              Gallery
+            </a>
+            <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors font-medium">
+              Pricing
+            </a>
+            <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors font-medium">
+              About
+            </a>
+
             <SignedIn>
               <Link 
                 to="/history" 
@@ -61,15 +72,6 @@ const Navigation = () => {
                 Manage Plan
               </Link>
             </SignedIn>
-            <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors font-medium">
-              Gallery
-            </a>
-            <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors font-medium">
-              Pricing
-            </a>
-            <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors font-medium">
-              About
-            </a>
             
             {/* Clerk Authentication Components */}
             <SignedOut>
