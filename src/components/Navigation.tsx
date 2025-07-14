@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { Sparkles, Menu, X, History } from 'lucide-react';
+import { Sparkles, Menu, X, History, Settings } from 'lucide-react';
 import { useState } from 'react';
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/clerk-react';
 import { Link, useLocation } from 'react-router-dom';
@@ -48,6 +48,17 @@ const Navigation = () => {
               >
                 <History className="w-4 h-4" />
                 History
+              </Link>
+              <Link 
+                to="/plan" 
+                className={`font-medium transition-colors flex items-center gap-1 ${
+                  isActive('/plan') 
+                    ? 'text-purple-600' 
+                    : 'text-gray-600 hover:text-purple-600'
+                }`}
+              >
+                <Settings className="w-4 h-4" />
+                Manage Plan
               </Link>
             </SignedIn>
             <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors font-medium">
@@ -126,6 +137,18 @@ const Navigation = () => {
               >
                 <History className="w-4 h-4" />
                 History
+              </Link>
+              <Link 
+                to="/plan" 
+                className={`block font-medium py-2 transition-colors flex items-center gap-1 ${
+                  isActive('/plan') 
+                    ? 'text-purple-600' 
+                    : 'text-gray-600 hover:text-purple-600'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Settings className="w-4 h-4" />
+                Manage Plan
               </Link>
             </SignedIn>
             <a href="#" className="block text-gray-600 hover:text-purple-600 transition-colors font-medium py-2">

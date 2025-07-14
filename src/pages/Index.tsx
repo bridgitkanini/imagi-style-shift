@@ -13,6 +13,8 @@ import Footer from '../components/Footer';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Sparkles, Wand2, Image as ImageIcon, Edit3 } from 'lucide-react';
+import { CurrentPlanDisplay } from '@/components/CurrentPlanDisplay';
+import { SignedIn } from '@clerk/clerk-react';
 
 const Index = () => {
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
@@ -118,9 +120,14 @@ const Index = () => {
       <section className="py-20 px-4" id="try-it">
         <div className="max-w-6xl mx-auto">
           <div className="bg-white/70 backdrop-blur-sm rounded-3xl shadow-xl border border-white/20 p-8 md:p-12">
-            <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              AI Image Tools
-            </h2>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                AI Image Tools
+              </h2>
+              <SignedIn>
+                <CurrentPlanDisplay />
+              </SignedIn>
+            </div>
             
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               <TabsList className="grid w-full grid-cols-3 mb-8">
