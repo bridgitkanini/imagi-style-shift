@@ -1,6 +1,5 @@
-
-import { Button } from '@/components/ui/button';
-import { Sparkles } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Sparkles } from "lucide-react";
 
 const Footer = () => {
   const footerSections = [
@@ -10,8 +9,8 @@ const Footer = () => {
         { name: "Features", href: "#" },
         { name: "Pricing", href: "#" },
         { name: "API", href: "#" },
-        { name: "Integrations", href: "#" }
-      ]
+        { name: "Integrations", href: "#" },
+      ],
     },
     {
       title: "Resources",
@@ -19,8 +18,8 @@ const Footer = () => {
         { name: "Blog", href: "#" },
         { name: "Documentation", href: "#" },
         { name: "Community", href: "#" },
-        { name: "Help Center", href: "#" }
-      ]
+        { name: "Help Center", href: "#" },
+      ],
     },
     {
       title: "Company",
@@ -28,9 +27,9 @@ const Footer = () => {
         { name: "About", href: "#" },
         { name: "Contact", href: "#" },
         { name: "Privacy Policy", href: "#" },
-        { name: "Terms of Service", href: "#" }
-      ]
-    }
+        { name: "Terms of Service", href: "#" },
+      ],
+    },
   ];
 
   return (
@@ -42,11 +41,13 @@ const Footer = () => {
             Ready to Transform Your Images?
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Join thousands of users who are already creating magical Ghibli-style artwork and action figures from their photos.
+            Join thousands of users who are already creating magical
+            Ghibli-style artwork and action figures from their photos.
           </p>
-          <Button 
+          <Button
             size="lg"
             className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-3 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             Get Started Now →
           </Button>
@@ -71,23 +72,58 @@ const Footer = () => {
                 </span>
               </div>
               <p className="text-muted-foreground leading-relaxed">
-                Transform your ordinary photos into magical Ghibli-style artwork or action figures with our AI-powered image transformation.
+                Transform your ordinary photos into magical Ghibli-style artwork
+                or action figures with our AI-powered image transformation.
               </p>
             </div>
 
             {/* Footer Sections */}
             {footerSections.map((section, index) => (
               <div key={index}>
-                <h3 className="font-semibold text-gray-900 mb-6">{section.title}</h3>
+                <h3 className="font-semibold text-gray-900 mb-6">
+                  {section.title}
+                </h3>
                 <ul className="space-y-4">
                   {section.links.map((link, linkIndex) => (
                     <li key={linkIndex}>
-                      <a 
-                        href={link.href}
-                        className="text-muted-foreground hover:text-purple-600 transition-colors"
-                      >
-                        {link.name}
-                      </a>
+                      {link.name === "Features" ? (
+                        <button
+                          className="text-muted-foreground hover:text-purple-600 transition-colors"
+                          onClick={() => {
+                            const el = document.getElementById("features");
+                            if (el) el.scrollIntoView({ behavior: "smooth" });
+                          }}
+                        >
+                          Features
+                        </button>
+                      ) : link.name === "Pricing" ? (
+                        <button
+                          className="text-muted-foreground hover:text-purple-600 transition-colors"
+                          onClick={() => {
+                            const el = document.getElementById("pricing");
+                            if (el) el.scrollIntoView({ behavior: "smooth" });
+                          }}
+                        >
+                          Pricing
+                        </button>
+                      ) : link.name === "About" ? (
+                        <button
+                          className="text-muted-foreground hover:text-purple-600 transition-colors"
+                          onClick={() => {
+                            const el = document.getElementById("footer");
+                            if (el) el.scrollIntoView({ behavior: "smooth" });
+                          }}
+                        >
+                          About
+                        </button>
+                      ) : (
+                        <a
+                          href={link.href}
+                          className="text-muted-foreground hover:text-purple-600 transition-colors"
+                        >
+                          {link.name}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>
