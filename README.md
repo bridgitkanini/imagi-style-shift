@@ -1,8 +1,100 @@
-# Welcome to your Lovable project
-
-## About Magic Transform
+# Magic Transform 🎨✨
 
 **Magic Transform** is a comprehensive AI-powered image generation and transformation platform that allows users to create, edit, and transform images using cutting-edge artificial intelligence technology.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or later)
+- pnpm (v8 or later)
+- Supabase account
+- OpenAI API key
+- Clerk account for authentication
+- Stripe account for payments (optional)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/magic-transform.git
+   cd magic-transform
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pnpm install
+   ```
+
+3. **Set up environment variables**
+   Create a `.env` file in the root directory and add the following variables:
+   ```env
+   VITE_SUPABASE_URL=your_supabase_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   VITE_OPENAI_API_KEY=your_openai_api_key
+   VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+   VITE_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+   ```
+
+4. **Start the development server**
+   ```bash
+   pnpm dev
+   ```
+   The application will be available at `http://localhost:5173`
+
+## 🏗 Project Structure
+
+```
+src/
+├── components/       # Reusable UI components
+│   └── ui/          # shadcn/ui components
+├── hooks/           # Custom React hooks
+├── integrations/    # Third-party service integrations
+│   └── supabase/    # Supabase client and utilities
+├── lib/             # Utility functions and helpers
+├── pages/           # Application pages
+│   ├── History.tsx     # Image generation history
+│   ├── Index.tsx       # Main page with image generation
+│   ├── NotFound.tsx    # 404 page
+│   └── PlanManagement.tsx # Subscription management
+└── utils/           # Utility functions
+```
+
+## 🛠 Built With
+
+- **Frontend Framework**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS with shadcn/ui components
+- **State Management**: React Query
+- **Authentication**: Clerk
+- **Database & Storage**: Supabase
+- **Payments**: Stripe
+- **AI**: OpenAI (DALL-E, GPT Image 1)
+- **Form Handling**: React Hook Form with Zod validation
+- **UI Components**: Radix UI Primitives
+- **Icons**: Lucide React
+- **Date Handling**: date-fns
+- **Charts**: Recharts
+- **Toasts & Notifications**: Sonner
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [shadcn/ui](https://ui.shadcn.com/) for the amazing component library
+- [Vite](https://vitejs.dev/) for the fast development experience
+- [Supabase](https://supabase.com/) for backend services
+- [OpenAI](https://openai.com/) for the AI models
 
 ### 🎨 Core Features
 
