@@ -15,6 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Sparkles, Wand2, Image as ImageIcon, Edit3 } from "lucide-react";
 import { CurrentPlanDisplay } from "@/components/CurrentPlanDisplay";
 import { SignedIn } from "@clerk/clerk-react";
+import { ghibliImage1 } from '@/assets';
 
 const Index = () => {
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
@@ -110,16 +111,16 @@ const Index = () => {
 
           {/* Right: Image Card */}
           <div className="flex-1 flex items-center justify-center w-full md:w-auto">
-            <div className="relative w-[380px] h-[240px] md:w-[420px] md:h-[260px] rounded-3xl shadow-2xl border-4 border-white overflow-hidden bg-white">
+            <div className="relative w-[380px] h-[240px] md:w-[520px] md:h-[400px] rounded-3xl shadow-2xl border-4 border-white overflow-hidden bg-white">
               <img
                 src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=500&fit=crop"
                 alt="Main example"
                 className="w-full h-full object-cover"
               />
               {/* Overlay smaller image */}
-              <div className="absolute bottom-4 right-4 w-40 h-24 rounded-xl shadow-lg border-2 border-white overflow-hidden bg-white flex items-center justify-center">
+              <div className="absolute bottom-4 right-4 w-40 h-24 md:w-60 md:h-40 rounded-xl shadow-lg border-2 border-white overflow-hidden bg-white flex items-center justify-center">
                 <img
-                  src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=500&fit=crop"
+                  src={ghibliImage1}
                   alt="Overlay example"
                   className="w-full h-full object-cover"
                 />

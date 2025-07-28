@@ -2,43 +2,45 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
+import { ghibliImage1, ghibliImage2, ghibliImage3, ghibliImage4, ghibliImage5, ghibliImage6 } from '@/assets';
 
 const ExamplesSection = () => {
   const [activeTab, setActiveTab] = useState<'ghibli' | 'action-figure'>('ghibli');
 
   const examples = {
     ghibli: [
-      {
-        title: "Nature Scene",
-        original: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=400&h=300&fit=crop",
-        transformed: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop"
-      },
-      {
-        title: "City Streets",
-        original: "https://images.unsplash.com/photo-1527576539890-dfa815648363?w=400&h=300&fit=crop",
-        transformed: "https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?w=400&h=300&fit=crop"
-      },
+
       {
         title: "Portrait",
         original: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=300&fit=crop",
-        transformed: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=400&h=300&fit=crop"
+        transformed: ghibliImage1
+      },
+      {
+        title: "Nature Scene",
+        original: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=400&h=300&fit=crop",
+        transformed: ghibliImage2
+      },
+      {
+        title: "City Streets",
+        original: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop",
+        transformed: ghibliImage5,
       }
     ],
     'action-figure': [
       {
         title: "Superhero",
-        original: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop",
-        transformed: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=400&h=300&fit=crop"
+        original: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=400&h=300&fit=crop",
+        transformed: ghibliImage4
       },
       {
         title: "Space Explorer",
-        original: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop",
-        transformed: "https://images.unsplash.com/photo-1496307653780-42ee777d4833?w=400&h=300&fit=crop"
+        original: "https://images.unsplash.com/photo-1527576539890-dfa815648363?w=400&h=300&fit=crop",
+        transformed: ghibliImage3
       },
       {
         title: "Adventure",
-        original: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop",
-        transformed: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=300&fit=crop"
+        original: "https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?w=400&h=300&fit=crop",
+        transformed: ghibliImage6
       }
     ]
   };
